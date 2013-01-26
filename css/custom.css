@@ -1,0 +1,9 @@
+.reveal pre code {
+  padding: 15px;
+  border-radius: 5px;
+  border: solid rgb(51, 48, 48) 2px;
+
+  -moz-box-shadow: 6px 6px 7px 3px rgb(46, 44, 44);
+  -webkit-box-shadow: 6px 6px 7px 3px rgb(46, 44, 44);
+  box-shadow: 6px 6px 7px 3px rgb(46, 44, 44);
+}
