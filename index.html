@@ -112,6 +112,7 @@
 
             <aside class="notes">
               - application specific logic is hard to be make reusable and mostly is coupled
+              - guilty of being an npm module until proven innocent
             </aside>
           </section>
 
@@ -134,6 +135,7 @@
 
               2. 
                 - single functions can easily be understood and reused
+                - hoogle: input - output based search
                 - hoogle: String -/ String "map string to another"
                 - hoogle: (Char -/ Bool) -/ String -/ String   "predicate, input, output"
                 - hoogle [a] -/ Maybe a
@@ -146,6 +148,7 @@
             <p class="fragment roll-in">spotting potential standalone modules</p>
             <p class="fragment roll-in">decoupling them from other modules</p>
             <aside class="notes">
+              - related (hard to see that coupled modules can be standalone)
             </aside>
           </section>
 
@@ -180,7 +183,8 @@
               3. show'em that it CURRENTLY works
               4. some shops cannot use a module if it doesn't clearly state its license (MIT or BSD will do)
               5. I myself have thanked myself many times for writing a good readme
-              6. pick nice name here
+              6. will be using more npm modules, need to be able to learn how to use them quickly
+              7. pick nice name here
             </aside>
           </section>
         </section>
