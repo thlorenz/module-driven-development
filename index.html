@@ -48,6 +48,11 @@
 
             Using [replpad](https://github.com/thlorenz/replpad) as an example
           </script>
+            <aside class="notes">
+              - purpose
+                - create smaller modules, ideally functions
+                - publish modules to npm whenever they are reusable
+            </aside>
         </section>
 
         <!-- What constitues a module and connect example -->
@@ -65,7 +70,9 @@
 
             </script>
             <aside class="notes">
+              - by module we mean an npm module (published)
               - obvious way to achieve this on a package level, is to to split them up into lots of smaller packages
+              - introduce connect
             </aside>
           </section>
 
@@ -112,7 +119,7 @@
 
             <aside class="notes">
               - application specific logic is hard to be make reusable and mostly is coupled
-              - guilty of being an npm module until proven innocent
+              - need good reason to NOT publish instead of the other way around
             </aside>
           </section>
 
@@ -130,8 +137,9 @@
                 - benefits are you end up with smaller modules, easier to understand
                 - separately tested, separately useable
                 - forced to write readme, which results in detailed module documentation, motivation to help others as well
-                - learning curve minimal (doesn't do much) and simple API
                 - you'll need it for some other lib soon enough (speak from experience)
+                - learning curve minimal (doesn't do much) and simple API
+                - module does one thing
 
               2. 
                 - single functions can easily be understood and reused
@@ -145,10 +153,10 @@
 
           <section>
             <h2>Challenges</h2>
-            <p class="fragment roll-in">spotting potential standalone modules</p>
-            <p class="fragment roll-in">decoupling them from other modules</p>
+            <p class="fragment roll-in">spotting potential standalone functions</p>
+            <p class="fragment roll-in">decoupling them from other parts of code</p>
             <aside class="notes">
-              - related (hard to see that coupled modules can be standalone)
+              - related (hard to see that coupled functions can be standalone)
             </aside>
           </section>
 
@@ -499,6 +507,13 @@
             </aside>
           </section>
 
+        </section>
+
+        <!-- trap -->
+        <section data-markdown class="slim">
+          <h2>trap</h2>
+          <img class="fragment roll-in" src="images/ansicolors-01.png" alt="ansi1">
+          <img class="fragment roll-in" src="images/ansicolors-02.png" alt="ansi2">
         </section>
 
         <!-- wrapping up -->
