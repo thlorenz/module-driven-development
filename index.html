@@ -51,129 +51,141 @@
 
         </section>
 
-        <section data-markdown class="slim">
-          <script type="text/template">
-            ## Every Module is a function
-
-            ```js
-            module.exports = function (..) {
-              [..]
-            };
-            ```
-            @substack
-
-          </script>
-        </section>
-
-        <section data-markdown class="slim">
-          <script type="text/template">
-            ## Connect Dependencies
-
-            ```js
-              "qs": "0.5.1",              
-              "formidable": "1.0.11",
-              "cookie-signature": "0.0.1",
-              "buffer-crc32": "0.1.1",
-              "cookie": "0.0.5",
-              "bytes": "0.0.1",           
-              "send": "0.1.0",            
-              "bytes": "0.1.0",
-              "fresh": "0.1.0",
-              "pause": "0.0.1",
-              "debug": "*"
-            ```
-          </script>
-        </section>
-
-        <section data-markdown class="slim">
-          <script type="text/template">
-            ## Connect Dependencies not by TJ
-
-            ```js
-              "formidable": "1.0.11",
-              "buffer-crc32": "0.1.1",
-              "cookie": "0.0.5"
-            ```
-          </script>
-					<aside class="notes">
-					  Connect didn't start out this way. Most of these were part of the framework.
-					  The result of a very disciplined effort of pulling modules out of connect.
-					</aside>
-        </section>
-
+        <!-- What constitues a module and connect example -->
         <section>
-          <h2>What constitutes a module</h2>
-            <img class="fragment roll-in" src="images/raynos1.png" alt="rayons1">
-            <img class="fragment roll-in" src="images/raynos2.png" alt="raynos2">
+          <section data-markdown class="slim">
+            <script type="text/template">
+              ## Every Module is a function
 
-					<aside class="notes">
-					  Clearly application specific logic is hard to be make reusable.
-            It will be hard to remove coupling as well.
-					</aside>
+              ```js
+              module.exports = function (..) {
+                [..]
+              };
+              ```
+              @substack
+
+            </script>
+            <aside class="notes">
+              Only way to achieve this on a published module level, is to to split them up into lots of smaller modules
+            </aside>
+          </section>
+
+          <section data-markdown class="slim">
+            <script type="text/template">
+              ## Connect Dependencies
+
+              ```js
+                "qs": "0.5.1",              
+                "formidable": "1.0.11",
+                "cookie-signature": "0.0.1",
+                "buffer-crc32": "0.1.1",
+                "cookie": "0.0.5",
+                "bytes": "0.0.1",           
+                "send": "0.1.0",            
+                "bytes": "0.1.0",
+                "fresh": "0.1.0",
+                "pause": "0.0.1",
+                "debug": "*"
+              ```
+            </script>
+          </section>
+
+          <section data-markdown class="slim">
+            <script type="text/template">
+              ## Connect Dependencies not by TJ
+
+              ```js
+                "formidable": "1.0.11",
+                "buffer-crc32": "0.1.1",
+                "cookie": "0.0.5"
+              ```
+            </script>
+            <aside class="notes">
+              Connect didn't start out this way. Most of these were part of the framework.
+              The result of a very disciplined effort of pulling modules out of connect.
+            </aside>
+          </section>
+
+          <section>
+            <h2>What constitutes a module</h2>
+              <img class="fragment roll-in" src="images/raynos1.png" alt="rayons1">
+              <img class="fragment roll-in" src="images/raynos2.png" alt="raynos2">
+
+            <aside class="notes">
+              Clearly application specific logic is hard to be make reusable.
+              It will be hard to remove coupling as well.
+            </aside>
+          </section>
+
         </section>
 
-
-        <section data-markdown class="slim">
-          <script type="text/template">
-            ## Easier said than done
-            
-            Examine challenges and patterns in achieving this goal and show examples taken from my work on replpad
-
-          </script>
-					<aside class="notes">
-					  - benefits are you end up with smaller modules, easier to understand
-            - separately tested, separately useable
-            - learning curve minimal (doesn't do much) and simple API
-            - you'll need it for some other lib soon enough (speak from experience)
-					</aside>
-        </section>
-
+        <!-- Challenges and Patterns -->
         <section>
-          <h2>Challenges</h2>
-          <p class="fragment roll-in">spotting potential standalone modules</p>
-          <p class="fragment roll-in">decoupling them from other modules</p>
-					<aside class="notes">
-					</aside>
-        </section>
+          <section>
+              <h2>Easier said than done</h2>
+              <p class="fragment roll-in">worth it</p>
+              <p class="fragment roll-in">Example from Haskell: <a href="http://www.haskell.org/hoogle/">hoogle</a></p>
+              
+            <aside class="notes">
+              - benefits are you end up with smaller modules, easier to understand
+              - separately tested, separately useable
+              - learning curve minimal (doesn't do much) and simple API
+              - you'll need it for some other lib soon enough (speak from experience)
+              - forced to write readme, which results in detailed module documentation, motivation to help others as well
 
-        <section>
-          <h2>Patterns</h2>
-          <p class="fragment roll-in">build small modules</p>
-          <p class="fragment roll-in">decouple, decouple, decouple</p>
-          <p class="fragment roll-in">continuously refactor out functions into modules</p>
-          <p class="fragment roll-in">continuously pull out non app specific modules</p>
-					<aside class="notes">
-					  1.  building small modules helps in spotting them and they are less work to publish
-                chance of coupling is smaller since they do less - need less dependencies 
-            2.  hardest part - techniques involved are inversion of control, i.e. with help of events (example shown)
-            3.  get used to it, discipline, becomes natural
-            4.  easier once they are in separate file already
-                slows you down since publishing needed, but worth it
-					</aside>
-        </section>
+              - single functions can easily be understood and reused
+              - hoogle: (Char -/ Bool) -/ String -/ String  | [a] -/ Maybe a
+            </aside>
+          </section>
 
-        <section>
-          <h2>Pull out process</h2>
-          <p class="fragment roll-in">separate repo and init package</p>
-          <p class="fragment roll-in">move or create tests</p>
-          <p class="fragment roll-in">travis</p>
-          <p class="fragment roll-in">LICENSE</p>
-          <p class="fragment roll-in">write GOOD readme</p>
-          <p class="fragment roll-in">provide examples</p>
-          <p class="fragment roll-in">npm pub</p>
-					<aside class="notes">
-					  1. the more often you do this, the faster this gets
-            2. no one will use your lib if you cannot prove that it works
-            3. show'em that it CURRENTLY works
-            4. some shops cannot use a module if it doesn't clearly state its license (MIT or BSD will do)
-            5. I myself have thanked myself many times for writing a good readme
-            6. pick nice name here
-					</aside>
+          <section>
+            <h2>Challenges</h2>
+            <p class="fragment roll-in">spotting potential standalone modules</p>
+            <p class="fragment roll-in">decoupling them from other modules</p>
+            <aside class="notes">
+            </aside>
+          </section>
+
+          <section>
+            <h2>Patterns</h2>
+            <p class="fragment roll-in">build small modules</p>
+            <p class="fragment roll-in">decouple, decouple, decouple</p>
+            <p class="fragment roll-in">continuously refactor out functions into modules</p>
+            <p class="fragment roll-in">continuously pull out non app specific modules</p>
+            <aside class="notes">
+              1.  building small modules helps in spotting them and they are less work to publish
+                  chance of coupling is smaller since they do less - need less dependencies 
+              2.  hardest part - techniques involved are inversion of control, i.e. with help of events (example shown)
+              3.  get used to it, discipline, becomes natural
+              4.  easier once they are in separate file already
+                  slows you down since publishing needed, but worth it
+            </aside>
+          </section>
+
+          <section>
+            <h2>Pull out process</h2>
+            <p class="fragment roll-in">separate repo and init package</p>
+            <p class="fragment roll-in">move or create tests</p>
+            <p class="fragment roll-in">travis</p>
+            <p class="fragment roll-in">LICENSE</p>
+            <p class="fragment roll-in">write GOOD readme</p>
+            <p class="fragment roll-in">provide examples</p>
+            <p class="fragment roll-in">npm pub</p>
+            <aside class="notes">
+              1. the more often you do this, the faster this gets
+              2. no one will use your lib if you cannot prove that it works
+              3. show'em that it CURRENTLY works
+              4. some shops cannot use a module if it doesn't clearly state its license (MIT or BSD will do)
+              5. I myself have thanked myself many times for writing a good readme
+              6. pick nice name here
+            </aside>
+          </section>
         </section>
 
         <section data-markdown class="slim">
           <script type="text/template">
             ## replpad DEMO
+            ![tty](images/tty.jpg)
           </script>
 					<aside class="notes">
             - piping
@@ -186,8 +198,10 @@
 
         <section data-markdown class="slim">
           <script type="text/template">
-
+            ## Dependencies
+            ![dps](images/depgraph.jpg)
           </script>
+
         </section>
 
         <section data-markdown class="slim">
