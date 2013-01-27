@@ -15,6 +15,9 @@
 		<link rel="stylesheet" href="css/reveal.min.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
+    <!-- Alternate style if projector doesn't like dark background, also change code style below -->
+		<!--<link rel="stylesheet" href="css/theme/sky.css" id="theme">-->
+
 		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- For syntax highlighting -->
@@ -41,14 +44,10 @@
 
         <section data-markdown>
           <script type="text/template">
-            ## Module Driven Development
+            # Module Driven Development
 
             Using [replpad](https://github.com/thlorenz/replpad) as an example
           </script>
-
-					<aside class="notes">
-					</aside>
-
         </section>
 
         <!-- What constitues a module and connect example -->
@@ -66,7 +65,7 @@
 
             </script>
             <aside class="notes">
-              Only way to achieve this on a published module level, is to to split them up into lots of smaller modules
+              - obvious way to achieve this on a package level, is to to split them up into lots of smaller packages
             </aside>
           </section>
 
@@ -112,8 +111,7 @@
               <img class="fragment roll-in" src="images/raynos2.png" alt="raynos2">
 
             <aside class="notes">
-              Clearly application specific logic is hard to be make reusable.
-              It will be hard to remove coupling as well.
+              - application specific logic is hard to be make reusable and mostly is coupled
             </aside>
           </section>
 
@@ -127,14 +125,19 @@
               <p class="fragment roll-in">Example from Haskell: <a href="http://www.haskell.org/hoogle/">hoogle</a></p>
               
             <aside class="notes">
-              - benefits are you end up with smaller modules, easier to understand
-              - separately tested, separately useable
-              - learning curve minimal (doesn't do much) and simple API
-              - you'll need it for some other lib soon enough (speak from experience)
-              - forced to write readme, which results in detailed module documentation, motivation to help others as well
+              1.
+                - benefits are you end up with smaller modules, easier to understand
+                - separately tested, separately useable
+                - forced to write readme, which results in detailed module documentation, motivation to help others as well
+                - learning curve minimal (doesn't do much) and simple API
+                - you'll need it for some other lib soon enough (speak from experience)
 
-              - single functions can easily be understood and reused
-              - hoogle: (Char -/ Bool) -/ String -/ String  | [a] -/ Maybe a
+              2. 
+                - single functions can easily be understood and reused
+                - hoogle: String -/ String "map string to another"
+                - hoogle: (Char -/ Bool) -/ String -/ String   "predicate, input, output"
+                - hoogle [a] -/ Maybe a
+                - unfortunately functions combined into big libs and with deficient cabal you are in dependency hell once a week
             </aside>
           </section>
 
@@ -196,6 +199,7 @@
 					</aside>
         </section>
 
+        <!-- Dependencies -->
         <section data-markdown class="slim">
           <script type="text/template">
             ## Dependencies
@@ -203,63 +207,347 @@
           </script>
 
 					<aside class="notes">
+					  keep coming back to this
 					</aside>
         </section>
 
-        <section data-markdown class="slim">
-          <script type="text/template">
-            ## hermit
+        <!-- ansicolors and ansistyles -->
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## ansicolors
+              ```js
+                var colorNums = {
+                    white         :  37,
+                    black         :  30,
+                    blue          :  34,
+                    cyan          :  36,
+                    green         :  32,
+                    magenta       :  35,
+                    red           :  31,
+                    yellow        :  33,
+                    brightBlack   :  90,
+                    brightRed     :  91,
+                    brightGreen   :  92,
+                    brightYellow  :  93,
+                    brightBlue    :  94,
+                    brightMagenta :  95,
+                    brightCyan    :  96,
+                    brightWhite   :  97
+                    },
+                  colors = {};
 
-          </script>
-					<aside class="notes">
-					</aside>
+
+                Object.keys(colorNums).forEach(function (k) {
+                  colors[k] = function (s) { 
+                    return '\u001b[' + colorNums[k] + 'm' + s + '\u001b[39m';
+                  };
+                });
+
+                module.exports = colors;
+              ```
+
+            </script>
+            <aside class="notes">
+              - not that big, but not worth repeating either
+            </aside>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## ansicolors
+              ```js
+                'use strict';
+
+                var colorNums = {
+                      white         :  37
+                    , black         :  30
+                    , blue          :  34
+                    , cyan          :  36
+                    , green         :  32
+                    , magenta       :  35
+                    , red           :  31
+                    , yellow        :  33
+                    , brightBlack   :  90
+                    , brightRed     :  91
+                    , brightGreen   :  92
+                    , brightYellow  :  93
+                    , brightBlue    :  94
+                    , brightMagenta :  95
+                    , brightCyan    :  96
+                    , brightWhite   :  97
+                    }
+                  , backgroundColorNums = {
+                      bgBlack         :  40
+                    , bgRed           :  41
+                    , bgGreen         :  42
+                    , bgYellow        :  43
+                    , bgBlue          :  44
+                    , bgMagenta       :  45
+                    , bgCyan          :  46
+                    , bgWhite         :  47
+                    , bgBrightBlack   :  100
+                    , bgBrightRed     :  101
+                    , bgBrightGreen   :  102
+                    , bgBrightYellow  :  103
+                    , bgBrightBlue    :  104
+                    , bgBrightMagenta :  105
+                    , bgBrightCyan    :  106
+                    , bgBrightWhite   :  107
+                    } 
+                  , colors = {}
+                  ;
+
+                Object.keys(colorNums).forEach(function (k) {
+                  colors[k] = function (s) { 
+                    return '\u001b[' + colorNums[k] + 'm' + s + '\u001b[39m';
+                  };
+                });
+
+                Object.keys(backgroundColorNums).forEach(function (k) {
+                  colors[k] = function (s) { 
+                    return '\u001b[' + backgroundColorNums[k] + 'm' + s + '\u001b[49m';
+                  };
+                });
+
+                module.exports = colors;
+              ```
+
+            </script>
+            <aside class="notes">
+              - once pulled out added background colors
+              - in the process created ansistyles module, even smaller
+              - kept it separate since styles are not the same as colors
+            </aside>
+          </section>
         </section>
 
-        <section data-markdown class="slim">
-          <script type="text/template">
+        <!-- Hermit -->
+        <section>
+          <section data-markdown class="slim">
+            <script type="text/template">
+              ## hermit
 
-          </script>
-					<aside class="notes">
-					</aside>
+            </script>
+            <aside class="notes">
+              - wanted to show core dox in repl
+              - nodejsapi exposes dox as json, but desc is html
+            </aside>
+          </section>
+
+          <section data-markdown class="slim">
+            <script type="text/template">
+              ## fs.readFile
+              ![fs.readfile](images/fs.readfile.png)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## fs.readFile
+              ```html
+                <p>Asynchronously reads the entire contents of a file. Example:\n\n</p>\n<pre><code>fs.readFile('/etc/passwd', function (err, data) {\n if (err) throw err;\n console.log(data);\n});</code></pre>\n<p>The callback is passed two arguments <code>(err, data)</code>, where <code>data</code> is the\ncontents of the file.\n\n</p>\n<p>If no encoding is specified, then the raw buffer is returned.\n\n\n</p>\n
+              ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## fs.readFile
+              ![fs.readfile.hermit](images/fs.readfile.hermit.png)
+            </script>
+            <aside class="notes">
+              - started inside replpad to implement simple html parser (i.e. just remove tags)
+              - once realized that this is bigger, created hermit
+              - now you can: curl http://nodejs.org/api/assert.html | hermit
+              - not too pretty, but useful for smaller snippets
+              - oh, if ansicolors and ansistyles would have been part of replpad, hermit couldn't have used it
+            </aside>
+          </section>
         </section>
 
-        <section data-markdown class="slim">
-          <script type="text/template">
 
-          </script>
-					<aside class="notes">
-					</aside>
+        <!-- readline-vim -->
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+            ## readline-vim
+            </script>
+            <aside class="notes">
+              - started as plugin to replpad
+              - part of replpad code base for long time
+            </aside>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+            ## readline-vim
+            ```js
+            module.exports = function override_ttyWrite(repl) {
+              var original_ttyWrite = repl.rli._ttyWrite
+              [..]
+            };
+            ```
+            </script>
+            <aside class="notes">
+              - took repl as an argument since that is what I applied vim bindings to
+              - realized that actually it added it to just the underlying readline
+            </aside>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+            ## readline-vim
+            ```js
+            module.exports = function override_ttyWrite(rli) {
+              var original_ttyWrite = rli._ttyWrite
+              [..]
+            };
+            ```
+            </script>
+            <aside class="notes">
+              - all I have to do is just pass in rli
+            </aside>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+            ## readline-vim
+            ```js
+            module.exports = function override_ttyWrite(rli) {
+              var original_ttyWrite = rli._ttyWrite
+              [..]
+              if (state.feedingFile) {
+                // makes sense to be in insert mode after file is piped
+                normal = false;
+                return original_ttyWrite.apply(rli, arguments);
+              }
+            };
+            ```
+            </script>
+            <aside class="notes">
+              - state part of replpad, also I had planned to do certain things when switching between modes
+              - impossible to separate? NO
+            </aside>
+          </section>
+
+          <section data-markdown class="wide">
+            <script type="text/template">
+            ## readline-vim
+            ```js
+            var override = module.exports = function override_ttyWrite(rli) {
+              var original_ttyWrite =  rli._ttyWrite
+                , isnormal =  false
+                , emitter  =  new EventEmitter()
+                , emit     =  emitter.emit.bind(emitter)
+                , map      =  createMap()
+                ;
+
+              // exposes properties and functions of our vimified readline
+              var vim = { threshold: 200 };
+              vim.__defineGetter__('events', function () { return emitter; });
+              vim.__defineGetter__('map', function () { return map; });
+
+              vim.forceNormal = function(silent) {
+                isnormal = true;
+                if (!silent) emit('normal');
+              };
+
+              vim.forceInsert = function(silent) {
+                isnormal = false;
+                if (!silent) emit('insert');
+              };
+
+              function normalMode() {
+                if (isnormal) return;
+                rli._moveCursor(-1);
+                isnormal = true;
+                insert.clearSequence();
+                emit('normal');
+              }
+
+              function insertMode() {
+                isnormal = false;
+                insert.clearSequence();
+                emit('insert');
+              }
+              [..]
+              return vim;
+            };
+            ```
+            </script>
+            <aside class="notes">
+              - state part of replpad, also I had planned to do certain things when switching between modes
+              - impossible to separate? NO
+            </aside>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## readline-vim
+              grew into its own full featured [package](https://github.com/thlorenz/readline-vim/blob/master/README.md)
+
+            </script>
+            <aside class="notes">
+              - added tons of tests
+              - improved the documentation
+              - added vim like mappings
+              - very good I pulled it out, can now be applied to any readline
+              
+              - show graph again
+            </aside>
+          </section>
+
         </section>
 
-        <section data-markdown class="slim">
-          <script type="text/template">
+        <!-- wrapping up -->
+        <section>
+          <section>
+            <h2>How to Become Module Driven</h2>
+            <h4>Phase One</h4>
+            <p class="fragment roll-in">any standalone function belongs in its own lib/module</p>
+            <p class="fragment roll-in">pull them out into separate packages whenever you can</p>
+            <aside class="notes">
+              1. by standalone I mean, it is not attached to a prototype, modify state, etc.,
+              2. can you think of any other use case than yours? Yes, so pull it out.
+            </aside>
+          </section>
 
-          </script>
-					<aside class="notes">
-					</aside>
+          <section>
+            <h2>How to Become Module Driven</h2>
+            <h4>Phase Two</h4>
+            <p class="fragment roll-in">substitute "npm" for "lib" in previous statement</p>
+            <p class="fragment roll-in">any standalone function belongs in its own npm/module</p>
+            <aside class="notes">
+              1.
+              2.
+                - easier to document, test and improve it
+                - easier to collaborate
+                - easier to understand than huge code bases
+            </aside>
+          </section>
+          <section>
+            <h2>How to Become Module Driven</h2>
+            <h4>Tools</h4>
+            <p class="fragment roll-in">npm init</p>
+            <p class="fragment roll-in"><a href="https://github.com/substack/travisify">travisify</a></p>
+            <p class="fragment roll-in">npm link</p>
+            <aside class="notes">
+              1. or copy your package.json
+              2. including travisify badge
+              3. allows developing dependents and dependees side by side and proofing a separate module before publishing it
+            </aside>
+          </section>
         </section>
 
-        <section data-markdown class="slim">
+        <!-- Thanks -->
+
+        <section data-markdown>
           <script type="text/template">
+            ## Thanks
+            
+            Thorsten Lorenz
 
-          </script>
-        </section>
+            twitter: [@thl0](https://twitter.com/thl0) github:  [thlorenz](https://github.com/thlorenz)
 
-        <section data-markdown class="slim">
-          <script type="text/template">
-
-          </script>
-        </section>
-
-        <section data-markdown class="slim">
-          <script type="text/template">
-
-          </script>
-        </section>
-
-        <section data-markdown class="slim">
-          <script type="text/template">
-
+            work: [Lab49](http://lab49.com) (wah)
           </script>
         </section>
 			</div>
@@ -274,7 +562,7 @@
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
-				progress: true,
+				progress: false,
 				history: true,
 				center: true,
 
@@ -295,6 +583,7 @@
       Reveal.addEventListener('slidechanged', function( event ) {
         notes = event.currentSlide.querySelector(".notes");
         if(notes) {
+          console.clear();
           console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
         }
       });

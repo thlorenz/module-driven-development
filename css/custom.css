@@ -17,3 +17,7 @@
 .reveal .medium pre {
   width: 700px;
 }
+
+.reveal .wide pre {
+  width: 1000px;
+}
