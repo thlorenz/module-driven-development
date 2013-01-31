@@ -602,8 +602,10 @@
       Reveal.addEventListener('slidechanged', function( event ) {
         notes = event.currentSlide.querySelector(".notes");
         if(notes) {
-          console.clear();
-          console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+          if (!console) return;
+
+          if(typeof console.clear == 'function') console.clear();
+          if (typeof console.info == 'function') console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
         }
       });
 		</script>
