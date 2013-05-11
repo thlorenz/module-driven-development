@@ -1,0 +1,10 @@
+.scriptie-talkie-container {
+  border        :  3px solid #504D4D !important;
+  border-radius :  5px !important;
+  width         :  1000px !important;
+  height        :  200px !important;
+  font-size     :  14px  !important;
+  text-align    :  initial !important;
+  line-height   :  initial !important;
+  font-family   :  Terminus,Consolas,Profont,Monaco,Inconsolata,Inconsolata-g, Unifont,Lime,"ClearlyU PUA",Clean,"DejaVu Sans Mono","Lucida Console", "Bitstream Vera Sans Mono",Freemono,"Liberation Mono",Dina,Anka,Droid Sans Mono, Anonymous Pro,Proggy fonts,Envy Code R,Gamow,Courier,"Courier New",Terminal,monospace !important;
+}

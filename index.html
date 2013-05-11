@@ -13,6 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/scriptie-talkie.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
     <!-- Alternate style if projector doesn't like dark background, also change code style below -->
@@ -30,6 +31,8 @@
 		<script>
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
+
+    <script type="text/javascript" src="https://github.com/thlorenz/scriptie-talkie-embed/raw/gh-pages/gh-pages/bundle.js"></script>
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -516,6 +519,31 @@
           <img class="fragment roll-in" src="images/ansicolors-02.png" alt="ansi2">
         </section>
 
+        <!-- scriptie-talkie -->
+
+          <section>
+            <section>
+              <h2>scriptie-talkie</h2>
+              <p class="fragment roll-in">
+                <textarea class="scriptie-talkie">
+                  var nodepdxIsAwesome = !('2' + 1 - 3);
+                </textarea>
+              </p>
+              <p class="fragment roll-in">
+                <textarea class="scriptie-talkie">
+                  var a   =  '2' + 1
+                    , dif =  a - 21;
+
+                  var nodepdxIsAwesome = !dif;
+                </textarea>
+              </p>
+            </section>
+            <section>
+              <h2>hypernal</h2>
+              <p><a href="http://localhost:3000">hyperwatch</a></p>
+            </section>
+          </section>
+
         <!-- wrapping up -->
         <section>
           <section>
@@ -545,7 +573,7 @@
           <section>
             <h2>How to Become Module Driven</h2>
             <h4>Tools</h4>
-            <p class="fragment roll-in">npm init</p>
+            <p class="fragment roll-in">npm init or <a href="https://github.com/substack/pkginit">pkginit</a></p>
             <p class="fragment roll-in"><a href="https://github.com/substack/travisify">travisify</a></p>
             <p class="fragment roll-in">npm link</p>
             <aside class="notes">
@@ -610,5 +638,9 @@
       });
 		</script>
 
+    <!-- transform scriptie-talkies -->
+    <script type="text/javascript">
+      window.scriptieTalkieEmbed();
+    </script>
 	</body>
 </html>
