@@ -1,13 +1,16 @@
-
 # 0
 - modularity and why it is important
 - convince you of this by showing theoretical and practical benefits
 
-  ## Community
+  ## theoretical ones taken from a book I read recently
+
+  ## Practical 
+
+  ### Community
   - collaboration
   - bug fixes
   - improved reuse
-  ## Your own projects
+  ### Your own projects
   - use replpad as an example
 
 # 1 
@@ -15,12 +18,12 @@
 - promotes the importance of modularity related to software development
 - modularity not a new idea as the following quotes show
 
-#1.2 
+#2 
 - by module we mean an npm module (published)
 - obvious way to achieve this on a package level, is to to split them up into lots of smaller packages
 - introduce connect
 
-##1.2
+##2.2
   Connect didn't start out this way. Most of these were part of the framework.
   The result of a very disciplined effort of pulling modules out of connect.
 
