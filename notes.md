@@ -2,16 +2,9 @@
 - modularity and why it is important
 - convince you of this by showing theoretical and practical benefits
 
-  ## theoretical ones taken from a book I read recently
-
-  ## Practical 
-
-  ### Community
-  - collaboration
-  - bug fixes
-  - improved reuse
-  ### Your own projects
-  - use replpad as an example
+- theoretical ones taken from a book I read recently
+- enables collaboration, bug fixes, easier reuse (smaller features)
+- use replpad as an example
 
 # 1 
 - 10 year old book, more relevant than ever READ IT!
@@ -55,10 +48,13 @@
 --1
 - building small modules helps in spotting them and they are less work to publish
 - chance of coupling is smaller since they do less - need less dependencies 
+
 --2
 - hardest part - techniques involved are inversion of control, i.e. with help of events (example shown)
+
 --3
 - get used to it, discipline, becomes natural
+
 --4
 - easier once they are in separate file already
 - slows you down since publishing needed, but worth it
@@ -68,16 +64,22 @@
 #3.3 Pull Out Process
 --1
 - the more often you do this, the faster this gets
+
 --2
 - no one will use your lib if you cannot prove that it works
+
 --3
 - show'em that it CURRENTLY works
+
 --4
 - some shops cannot use a module if it doesn't clearly state its license (MIT or BSD will do)
+
 --5
 - I myself have thanked myself many times for writing a good readme
+
 --6
 - will be using more npm modules, need to be able to learn how to use them quickly
+
 --7
 - pick nice name here
 
@@ -139,6 +141,7 @@
 
 --1
 - and can embed it -- fix code ;)
+
 --2
 - did not want to rewrite rendering code (right side)
 - problem to port cli tools to browser
@@ -148,6 +151,7 @@
 
 --1
 - by standalone I mean, it is not attached to a prototype, modify state, etc.,
+
 --2  
 - can you think of any other use case than yours? Yes, so pull it out.
 
@@ -162,7 +166,9 @@
 ##10.2
 --1
 - or copy your package.json
+
 --2
 - including travisify badge
+
 --3
 - allows developing dependents and dependees side by side and proofing a separate module before publishing it
