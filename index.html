@@ -97,26 +97,7 @@
 
         <!-- What constitues a module and connect example -->
         <section>
-          <section data-markdown class="slim">
-            <script type="text/template">
-              ## Every Module is a function
-
-              ```js
-              module.exports = function (..) {
-                [..]
-              };
-              ```
-              @substack
-
-            </script>
-            <aside class="notes">
-              - by module we mean an npm module (published)
-              - obvious way to achieve this on a package level, is to to split them up into lots of smaller packages
-              - introduce connect
-            </aside>
-          </section>
-
-          <section data-markdown class="slim">
+          <!--<section data-markdown class="slim">
             <script type="text/template">
               ## Connect Dependencies
 
@@ -150,7 +131,7 @@
               Connect didn't start out this way. Most of these were part of the framework.
               The result of a very disciplined effort of pulling modules out of connect.
             </aside>
-          </section>
+          </section>-->
 
           <section>
             <h2>What constitutes a module</h2>
@@ -163,6 +144,43 @@
             </aside>
           </section>
 
+          <section data-markdown class="slim">
+            <script type="text/template">
+              ## Every Module is a function
+
+              ```js
+              module.exports = function (..) {
+                [..]
+              };
+              ```
+              @substack
+
+            </script>
+            <aside class="notes">
+              - by module we mean an npm module (published)
+              - obvious way to achieve this on a package level, is to to split them up into lots of smaller packages
+              - introduce connect
+            </aside>
+          </section>
+          <section>
+            <h2>Example from Haskell</h2>
+            <p class="fragment roll-in"><a href="http://www.haskell.org/hoogle/">hoogle</a></p>
+            <p class="fragment roll-in"><a href="http://www.haskell.org/hoogle/?hoogle=String+-%3E+String">String -&gt; String</a></p>
+            <p class="fragment roll-in">
+              <iframe 
+                src="http://www.haskell.org/hoogle/?hoogle=String+-%3E+String" 
+                style="border:1px #FFFFFF solid;background:white;" name="hoogle" 
+                scrolling="yes" 
+                frameborder="0" 
+                marginheight="0px" 
+                marginwidth="0px" 
+                height="600px" 
+                width="600px"
+                background-color="white">
+              </iframe>
+              </p>
+          </section>
+
         </section>
 
         <!-- Challenges and Patterns -->
@@ -170,7 +188,10 @@
           <section>
               <h2>Easier said than done</h2>
               <p class="fragment roll-in">worth it</p>
-              <p class="fragment roll-in">Example from Haskell: <a href="http://www.haskell.org/hoogle/">hoogle</a></p>
+              <p class="fragment roll-in">ease or reuse</p>
+              <p class="fragment roll-in">test and extend in isolation</p>
+              <p class="fragment roll-in">forced to write readme</p>
+              <p class="fragment roll-in">small learning curve</p>
               
             <aside class="notes">
               1.
